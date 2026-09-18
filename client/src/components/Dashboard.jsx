@@ -15,7 +15,6 @@ import {
     Lock, 
     Flame, 
     AlertCircle, 
-    ExternalLink, 
     Ban, 
     CheckCircle2, 
     Clock, 
@@ -23,7 +22,7 @@ import {
 } from 'lucide-react';
 
 export const Dashboard = ({ showToast, openQRModal }) => {
-    const { isAuthenticated, openLogin, openRegister, user } = useAuth();
+    const { isAuthenticated, openLogin, openRegister } = useAuth();
 
     const [files, setFiles] = useState([]);
     const [stats, setStats] = useState({
@@ -132,26 +131,26 @@ export const Dashboard = ({ showToast, openQRModal }) => {
     // Unauthenticated state
     if (!isAuthenticated) {
         return (
-            <div className="max-w-xl mx-auto py-12 px-6 text-center space-y-6 bg-slate-900/80 rounded-3xl border border-slate-800 backdrop-blur-xl shadow-2xl animate-in fade-in duration-300">
-                <div className="w-16 h-16 mx-auto rounded-3xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+            <div className="max-w-xl mx-auto py-12 px-6 text-center space-y-6 bg-white rounded-3xl border border-gray-200 shadow-sm animate-in fade-in duration-300">
+                <div className="w-16 h-16 mx-auto rounded-3xl bg-orange-50 border border-orange-200 flex items-center justify-center text-[#F57C00]">
                     <ShieldCheck className="w-8 h-8" />
                 </div>
                 <div className="space-y-2">
-                    <h2 className="text-2xl font-bold text-white tracking-tight">Access Your File Vault</h2>
-                    <p className="text-sm text-slate-400 max-w-md mx-auto">
+                    <h2 className="text-2xl font-bold text-gray-900 tracking-tight">Access Your File Vault</h2>
+                    <p className="text-sm text-gray-500 max-w-md mx-auto">
                         Sign in to monitor download analytics, revoke links in real-time, enforce self-destruct triggers, and manage active shares.
                     </p>
                 </div>
                 <div className="flex items-center justify-center gap-3 pt-2">
                     <button
                         onClick={openLogin}
-                        className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/30 transition-all"
+                        className="px-5 py-2.5 rounded-xl bg-[#F57C00] hover:bg-[#bd5e00] text-white text-xs font-semibold shadow-sm shadow-orange-500/20 transition-all"
                     >
                         Sign In
                     </button>
                     <button
                         onClick={openRegister}
-                        className="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition-all border border-slate-700"
+                        className="px-5 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-semibold transition-all border border-gray-200"
                     >
                         Create Free Account
                     </button>
@@ -165,67 +164,71 @@ export const Dashboard = ({ showToast, openQRModal }) => {
             {/* Header with user welcome & refresh button */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                        Vault <span className="text-indigo-400">Dashboard</span>
+                    <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+                        Vault <span className="text-[#F57C00]">Dashboard</span>
                     </h1>
-                    <p className="text-xs text-slate-400 mt-0.5">
+                    <p className="text-xs text-gray-500 mt-0.5">
                         Manage active file shares, revoke permissions, and review download metrics.
                     </p>
                 </div>
                 <button
                     onClick={loadDashboardData}
                     disabled={loading}
-                    className="self-start sm:self-auto flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 text-xs font-medium transition-all shadow-sm"
+                    className="self-start sm:self-auto flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 text-xs font-medium transition-all shadow-sm"
                 >
-                    <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin text-indigo-400' : ''}`} />
+                    <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin text-[#F57C00]' : ''}`} />
                     <span>Refresh Data</span>
                 </button>
             </div>
 
-            {/* Metrics Overview Cards */}
+            {/* Metrics Overview Cards with Functional Accents */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800/80 shadow-xl backdrop-blur-xl">
+                {/* Total Uploads */}
+                <div className="p-5 rounded-2xl bg-white border border-gray-200 shadow-sm">
                     <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-semibold text-slate-400">Total Uploads</span>
-                        <div className="w-8 h-8 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+                        <span className="text-xs font-semibold text-gray-500">Total Uploads</span>
+                        <div className="w-9 h-9 rounded-xl bg-[#EFF6FF] border border-blue-100 flex items-center justify-center text-[#2563EB]">
                             <Files className="w-4 h-4" />
                         </div>
                     </div>
-                    <p className="text-2xl font-black text-white">{stats.totalFiles}</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">Stored files in vault</p>
+                    <p className="text-2xl font-bold text-gray-900">{stats.totalFiles}</p>
+                    <p className="text-[11px] text-gray-400 mt-0.5">Stored files in vault</p>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800/80 shadow-xl backdrop-blur-xl">
+                {/* Total Downloads */}
+                <div className="p-5 rounded-2xl bg-white border border-gray-200 shadow-sm">
                     <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-semibold text-slate-400">Total Downloads</span>
-                        <div className="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                        <span className="text-xs font-semibold text-gray-500">Total Downloads</span>
+                        <div className="w-9 h-9 rounded-xl bg-[#F0FDF4] border border-green-100 flex items-center justify-center text-[#16A34A]">
                             <Download className="w-4 h-4" />
                         </div>
                     </div>
-                    <p className="text-2xl font-black text-white">{stats.totalDownloads}</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">Times files were accessed</p>
+                    <p className="text-2xl font-bold text-gray-900">{stats.totalDownloads}</p>
+                    <p className="text-[11px] text-gray-400 mt-0.5">Times files were accessed</p>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800/80 shadow-xl backdrop-blur-xl">
+                {/* Active Links */}
+                <div className="p-5 rounded-2xl bg-white border border-gray-200 shadow-sm">
                     <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-semibold text-slate-400">Active Links</span>
-                        <div className="w-8 h-8 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
+                        <span className="text-xs font-semibold text-gray-500">Active Links</span>
+                        <div className="w-9 h-9 rounded-xl bg-[#FFF7ED] border border-orange-100 flex items-center justify-center text-[#EA580C]">
                             <ShieldCheck className="w-4 h-4" />
                         </div>
                     </div>
-                    <p className="text-2xl font-black text-white">{stats.activeLinks}</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">Live download endpoints</p>
+                    <p className="text-2xl font-bold text-gray-900">{stats.activeLinks}</p>
+                    <p className="text-[11px] text-gray-400 mt-0.5">Live download endpoints</p>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800/80 shadow-xl backdrop-blur-xl">
+                {/* Storage Used */}
+                <div className="p-5 rounded-2xl bg-white border border-gray-200 shadow-sm">
                     <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-semibold text-slate-400">Storage Used</span>
-                        <div className="w-8 h-8 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+                        <span className="text-xs font-semibold text-gray-500">Storage Used</span>
+                        <div className="w-9 h-9 rounded-xl bg-[#FAF5FF] border border-purple-100 flex items-center justify-center text-[#9333EA]">
                             <HardDrive className="w-4 h-4" />
                         </div>
                     </div>
-                    <p className="text-2xl font-black text-white">{formatFileSize(stats.totalStorageBytes)}</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">Total data footprint</p>
+                    <p className="text-2xl font-bold text-gray-900">{formatFileSize(stats.totalStorageBytes)}</p>
+                    <p className="text-[11px] text-gray-400 mt-0.5">Total data footprint</p>
                 </div>
             </div>
 
@@ -233,26 +236,26 @@ export const Dashboard = ({ showToast, openQRModal }) => {
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
                 {/* Search Bar */}
                 <div className="relative w-full sm:w-72">
-                    <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-3" />
+                    <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-3" />
                     <input
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Search files by name..."
-                        className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
+                        className="w-full pl-9 pr-4 py-2 rounded-xl bg-white border border-gray-300 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-[#F57C00] focus:border-[#F57C00] transition-colors"
                     />
                 </div>
 
                 {/* Filter Tabs */}
-                <div className="flex items-center gap-1 bg-slate-900/90 p-1 rounded-xl border border-slate-800 w-full sm:w-auto">
+                <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-xl border border-gray-200 w-full sm:w-auto">
                     {['all', 'active', 'revoked', 'expired'].map((status) => (
                         <button
                             key={status}
                             onClick={() => setFilterStatus(status)}
-                            className={`flex-1 sm:flex-none px-3 py-1.5 rounded-lg text-xs font-semibold capitalize transition-all ${
+                            className={`flex-1 sm:flex-none px-3.5 py-1.5 rounded-lg text-xs font-semibold capitalize transition-all ${
                                 filterStatus === status
-                                    ? 'bg-indigo-600 text-white shadow-sm'
-                                    : 'text-slate-400 hover:text-slate-200'
+                                    ? 'bg-[#F57C00] text-white shadow-sm'
+                                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200/50'
                             }`}
                         >
                             {status}
@@ -262,50 +265,50 @@ export const Dashboard = ({ showToast, openQRModal }) => {
             </div>
 
             {/* Files List / Table */}
-            <div className="bg-slate-900/80 rounded-3xl border border-slate-800 shadow-2xl backdrop-blur-xl overflow-hidden">
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
                 {loading ? (
                     <div className="py-20 text-center space-y-3">
-                        <div className="w-8 h-8 mx-auto border-2 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin" />
-                        <p className="text-xs text-slate-400 font-medium">Fetching vault records...</p>
+                        <div className="w-8 h-8 mx-auto border-2 border-orange-200 border-t-[#F57C00] rounded-full animate-spin" />
+                        <p className="text-xs text-gray-500 font-medium">Fetching vault records...</p>
                     </div>
                 ) : filteredFiles.length === 0 ? (
                     <div className="py-16 px-6 text-center space-y-3">
-                        <div className="w-12 h-12 mx-auto rounded-2xl bg-slate-800/60 border border-slate-700 flex items-center justify-center text-slate-400">
+                        <div className="w-12 h-12 mx-auto rounded-2xl bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400">
                             <AlertCircle className="w-6 h-6" />
                         </div>
-                        <h3 className="text-base font-bold text-white">No files found</h3>
-                        <p className="text-xs text-slate-400 max-w-sm mx-auto">
+                        <h3 className="text-base font-bold text-gray-800">No files found</h3>
+                        <p className="text-xs text-gray-500 max-w-sm mx-auto">
                             {searchQuery || filterStatus !== 'all'
                                 ? 'No files match your search criteria or filter status.'
                                 : 'You have not uploaded any files yet. Use the Upload tab to get started!'}
                         </p>
                     </div>
                 ) : (
-                    <div className="divide-y divide-slate-800/80">
+                    <div className="divide-y divide-gray-100">
                         {filteredFiles.map((file) => {
                             const isActionLoading = actionLoadingId === file.id;
 
-                            // Badge colors
+                            // Badges matching Alpha Housing CRM specs
                             let statusBadge = (
-                                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-green-100 text-green-700 border border-green-200">
                                     <CheckCircle2 className="w-3 h-3" /> Active
                                 </span>
                             );
                             if (file.status === 'revoked') {
                                 statusBadge = (
-                                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20">
+                                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-red-100 text-red-700 border border-red-200">
                                         <Ban className="w-3 h-3" /> Revoked
                                     </span>
                                 );
                             } else if (file.status === 'expired') {
                                 statusBadge = (
-                                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-amber-100 text-amber-700 border border-amber-200">
                                         <Clock className="w-3 h-3" /> Expired
                                     </span>
                                 );
                             } else if (file.status === 'limit_reached') {
                                 statusBadge = (
-                                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-orange-100 text-orange-700 border border-orange-200">
                                         <Layers className="w-3 h-3" /> Limit Reached
                                     </span>
                                 );
@@ -314,28 +317,28 @@ export const Dashboard = ({ showToast, openQRModal }) => {
                             return (
                                 <div
                                     key={file.id}
-                                    className="p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-800/30 transition-colors"
+                                    className="p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-gray-50/80 transition-colors"
                                 >
                                     {/* File metadata */}
                                     <div className="space-y-1.5 truncate max-w-md">
                                         <div className="flex items-center gap-2">
-                                            <span className="font-semibold text-sm text-slate-100 truncate">{file.name}</span>
+                                            <span className="font-semibold text-sm text-gray-900 truncate">{file.name}</span>
                                             {statusBadge}
                                         </div>
-                                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-400">
+                                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500">
                                             <span>{formatFileSize(file.size)}</span>
                                             <span>Uploaded: {formatDate(file.uploadedAt)}</span>
                                             <span className="flex items-center gap-1">
-                                                <Download className="w-3 h-3 text-slate-500" />
+                                                <Download className="w-3 h-3 text-gray-400" />
                                                 {file.downloadCount} {file.maxDownloads ? `/ ${file.maxDownloads}` : ''} downloads
                                             </span>
                                             {file.burnAfterReading && (
-                                                <span className="flex items-center gap-1 text-rose-400 font-medium">
+                                                <span className="flex items-center gap-1 text-red-600 font-medium">
                                                     <Flame className="w-3 h-3" /> Self-destruct
                                                 </span>
                                             )}
                                             {file.hasPassword && (
-                                                <span className="flex items-center gap-1 text-amber-400 font-medium">
+                                                <span className="flex items-center gap-1 text-amber-600 font-medium">
                                                     <Lock className="w-3 h-3" /> Protected
                                                 </span>
                                             )}
@@ -348,10 +351,10 @@ export const Dashboard = ({ showToast, openQRModal }) => {
                                         <button
                                             onClick={() => copyToClipboard(file.downloadUrl, file.id)}
                                             disabled={file.status !== 'active'}
-                                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium transition-all disabled:opacity-40"
+                                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#F57C00] hover:bg-[#bd5e00] text-white text-xs font-medium transition-all disabled:opacity-40 shadow-sm shadow-orange-500/10"
                                             title="Copy Share Link"
                                         >
-                                            {copiedId === file.id ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                                            {copiedId === file.id ? <Check className="w-3.5 h-3.5 text-white" /> : <Copy className="w-3.5 h-3.5" />}
                                             <span>{copiedId === file.id ? 'Copied' : 'Copy'}</span>
                                         </button>
 
@@ -359,7 +362,7 @@ export const Dashboard = ({ showToast, openQRModal }) => {
                                         <button
                                             onClick={() => openQRModal(file.downloadUrl, file.name)}
                                             disabled={file.status !== 'active'}
-                                            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition-all disabled:opacity-40"
+                                            className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs transition-all disabled:opacity-40"
                                             title="Mobile QR Code"
                                         >
                                             <QrCode className="w-4 h-4" />
@@ -371,8 +374,8 @@ export const Dashboard = ({ showToast, openQRModal }) => {
                                             disabled={isActionLoading}
                                             className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
                                                 file.isRevoked
-                                                    ? 'bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
-                                                    : 'bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border-rose-500/30'
+                                                    ? 'bg-green-50 hover:bg-green-100 text-green-700 border-green-200'
+                                                    : 'bg-red-50 hover:bg-red-100 text-red-700 border-red-200'
                                             }`}
                                         >
                                             {isActionLoading ? '...' : file.isRevoked ? 'Restore Link' : 'Revoke Link'}
@@ -382,7 +385,7 @@ export const Dashboard = ({ showToast, openQRModal }) => {
                                         <button
                                             onClick={() => handleDelete(file.id, file.name)}
                                             disabled={isActionLoading}
-                                            className="p-2 rounded-xl text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
+                                            className="p-2 rounded-xl text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
                                             title="Delete permanently"
                                         >
                                             <Trash2 className="w-4 h-4" />

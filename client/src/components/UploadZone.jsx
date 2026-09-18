@@ -16,8 +16,6 @@ import {
     X, 
     Layers, 
     Lock, 
-    Download, 
-    Info, 
     Sparkles 
 } from 'lucide-react';
 
@@ -139,26 +137,26 @@ export const UploadZone = ({ showToast, onUploadSuccess, openQRModal }) => {
         <div className="space-y-8 animate-in fade-in duration-300">
             {/* Header Hero Section */}
             <div className="text-center max-w-2xl mx-auto space-y-2">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-[#F57C00] text-xs font-semibold">
                     <Shield className="w-3.5 h-3.5" />
                     <span>Protected with SHA-256 / AES Grade Security</span>
                 </div>
-                <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                    Fast & Encrypted <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">File Sharing</span>
+                <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+                    Fast & Encrypted <span className="text-[#F57C00]">File Sharing</span>
                 </h1>
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-gray-500">
                     Upload your sensitive files with password protection, self-destruct timers, and single-use download limits.
                 </p>
             </div>
 
             {/* Main Upload Box */}
-            <div className="max-w-2xl mx-auto bg-slate-900/80 rounded-3xl border border-slate-800 shadow-2xl p-6 sm:p-8 backdrop-blur-xl">
+            <div className="max-w-2xl mx-auto bg-white rounded-3xl border border-gray-200 shadow-sm p-6 sm:p-8">
                 {/* Drag and drop dropzone */}
                 <div
                     onDragOver={handleDragOver}
                     onDrop={handleDrop}
                     onClick={() => fileInputRef.current?.click()}
-                    className="group relative border-2 border-dashed border-slate-700/80 hover:border-indigo-500/80 rounded-2xl p-8 text-center cursor-pointer transition-all duration-200 bg-slate-950/40 hover:bg-indigo-950/10"
+                    className="group relative border-2 border-dashed border-gray-300 hover:border-[#F57C00] rounded-2xl p-8 text-center cursor-pointer transition-all duration-200 bg-gray-50/70 hover:bg-orange-50/30"
                 >
                     <input
                         type="file"
@@ -168,26 +166,26 @@ export const UploadZone = ({ showToast, onUploadSuccess, openQRModal }) => {
                         className="hidden"
                     />
 
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-indigo-600/10 group-hover:bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 group-hover:text-indigo-300 group-hover:scale-105 transition-all">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-orange-50 group-hover:bg-orange-100 border border-orange-200 flex items-center justify-center text-[#F57C00] group-hover:scale-105 transition-all">
                         <UploadCloud className="w-8 h-8" />
                     </div>
 
-                    <h3 className="text-base font-semibold text-white mb-1">
+                    <h3 className="text-base font-semibold text-gray-900 mb-1">
                         Click or drag & drop files here
                     </h3>
-                    <p className="text-xs text-slate-400">
-                        Supports documents, images, archives & media up to <span className="text-slate-200 font-medium">{MAX_SIZE_MB}MB</span> each
+                    <p className="text-xs text-gray-500">
+                        Supports documents, images, archives & media up to <span className="text-gray-800 font-medium">{MAX_SIZE_MB}MB</span> each
                     </p>
                 </div>
 
                 {/* Selected Files Preview List */}
                 {selectedFiles.length > 0 && (
                     <div className="mt-6 space-y-2.5">
-                        <div className="flex items-center justify-between text-xs text-slate-400 font-medium px-1">
+                        <div className="flex items-center justify-between text-xs text-gray-500 font-medium px-1">
                             <span>Selected Files ({selectedFiles.length})</span>
                             <button
                                 onClick={() => setSelectedFiles([])}
-                                className="text-rose-400 hover:underline"
+                                className="text-red-500 hover:underline"
                             >
                                 Clear All
                             </button>
@@ -196,20 +194,20 @@ export const UploadZone = ({ showToast, onUploadSuccess, openQRModal }) => {
                             {selectedFiles.map((file, index) => (
                                 <div
                                     key={index}
-                                    className="flex items-center justify-between p-3 rounded-xl bg-slate-800/60 border border-slate-700/60 text-xs"
+                                    className="flex items-center justify-between p-3 rounded-xl bg-gray-50 border border-gray-200 text-xs"
                                 >
                                     <div className="flex items-center gap-3 truncate">
-                                        <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0">
+                                        <div className="w-8 h-8 rounded-lg bg-orange-50 border border-orange-200 flex items-center justify-center text-[#F57C00] shrink-0">
                                             <File className="w-4 h-4" />
                                         </div>
                                         <div className="truncate">
-                                            <p className="text-slate-200 font-medium truncate">{file.name}</p>
-                                            <p className="text-slate-500 text-[11px]">{formatFileSize(file.size)}</p>
+                                            <p className="text-gray-900 font-medium truncate">{file.name}</p>
+                                            <p className="text-gray-500 text-[11px]">{formatFileSize(file.size)}</p>
                                         </div>
                                     </div>
                                     <button
                                         onClick={() => removeSelectedFile(index)}
-                                        className="p-1 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-700/50 transition-colors"
+                                        className="p-1 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors"
                                     >
                                         <X className="w-4 h-4" />
                                     </button>
@@ -220,27 +218,27 @@ export const UploadZone = ({ showToast, onUploadSuccess, openQRModal }) => {
                 )}
 
                 {/* Advanced Security Controls Drawer */}
-                <div className="mt-6 pt-5 border-t border-slate-800">
+                <div className="mt-6 pt-5 border-t border-gray-200">
                     <button
                         type="button"
                         onClick={() => setShowAdvanced(!showAdvanced)}
-                        className="flex items-center justify-between w-full text-xs font-semibold text-slate-300 hover:text-white transition-colors"
+                        className="flex items-center justify-between w-full text-xs font-semibold text-gray-700 hover:text-gray-900 transition-colors"
                     >
                         <div className="flex items-center gap-2">
-                            <Lock className="w-4 h-4 text-indigo-400" />
+                            <Lock className="w-4 h-4 text-[#F57C00]" />
                             <span>Security & Expiration Options</span>
                         </div>
-                        <span className="text-[11px] text-indigo-400 font-medium">
+                        <span className="text-[11px] text-[#F57C00] font-medium">
                             {showAdvanced ? 'Hide Options ▲' : 'Configure Security ▼'}
                         </span>
                     </button>
 
                     {showAdvanced && (
-                        <div className="mt-4 p-4 rounded-2xl bg-slate-950/60 border border-slate-800/80 space-y-4 animate-in fade-in duration-200">
+                        <div className="mt-4 p-4 rounded-2xl bg-gray-50 border border-gray-200 space-y-4 animate-in fade-in duration-200">
                             {/* Password Protection */}
                             <div>
-                                <label className="flex items-center gap-1.5 text-xs font-semibold text-slate-300 mb-1.5">
-                                    <KeyRound className="w-3.5 h-3.5 text-indigo-400" />
+                                <label className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 mb-1.5">
+                                    <KeyRound className="w-3.5 h-3.5 text-[#F57C00]" />
                                     <span>Password Protection (Optional)</span>
                                 </label>
                                 <div className="relative">
@@ -249,12 +247,12 @@ export const UploadZone = ({ showToast, onUploadSuccess, openQRModal }) => {
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         placeholder="Set access password for recipient"
-                                        className="w-full pl-3 pr-10 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                                        className="w-full pl-3 pr-10 py-2 rounded-xl bg-white border border-gray-300 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-[#F57C00] focus:border-[#F57C00]"
                                     />
                                     <button
                                         type="button"
                                         onClick={() => setShowPassword(!showPassword)}
-                                        className="absolute right-3 top-2.5 text-slate-400 hover:text-slate-200"
+                                        className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
                                     >
                                         {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                                     </button>
@@ -264,14 +262,14 @@ export const UploadZone = ({ showToast, onUploadSuccess, openQRModal }) => {
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {/* Expiry Time */}
                                 <div>
-                                    <label className="flex items-center gap-1.5 text-xs font-semibold text-slate-300 mb-1.5">
-                                        <Clock className="w-3.5 h-3.5 text-indigo-400" />
+                                    <label className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 mb-1.5">
+                                        <Clock className="w-3.5 h-3.5 text-[#F57C00]" />
                                         <span>Expiration Window</span>
                                     </label>
                                     <select
                                         value={expiresInDays}
                                         onChange={(e) => setExpiresInDays(e.target.value)}
-                                        className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-indigo-500"
+                                        className="w-full px-3 py-2 rounded-xl bg-white border border-gray-300 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-[#F57C00] focus:border-[#F57C00]"
                                     >
                                         <option value="1">1 Day</option>
                                         <option value="3">3 Days</option>
@@ -283,15 +281,15 @@ export const UploadZone = ({ showToast, onUploadSuccess, openQRModal }) => {
 
                                 {/* Download Limit */}
                                 <div>
-                                    <label className="flex items-center gap-1.5 text-xs font-semibold text-slate-300 mb-1.5">
-                                        <Layers className="w-3.5 h-3.5 text-indigo-400" />
+                                    <label className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 mb-1.5">
+                                        <Layers className="w-3.5 h-3.5 text-[#F57C00]" />
                                         <span>Max Downloads</span>
                                     </label>
                                     <select
                                         value={maxDownloads}
                                         disabled={burnAfterReading}
                                         onChange={(e) => setMaxDownloads(e.target.value)}
-                                        className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white focus:outline-none focus:border-indigo-500 disabled:opacity-40"
+                                        className="w-full px-3 py-2 rounded-xl bg-white border border-gray-300 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-[#F57C00] focus:border-[#F57C00] disabled:opacity-40"
                                     >
                                         <option value="">Unlimited</option>
                                         <option value="1">1 Download Limit</option>
@@ -305,12 +303,12 @@ export const UploadZone = ({ showToast, onUploadSuccess, openQRModal }) => {
                             {/* Burn After Reading Toggle */}
                             <div className="pt-2 flex items-center justify-between">
                                 <div className="flex items-center gap-2">
-                                    <div className="w-7 h-7 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400">
+                                    <div className="w-7 h-7 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center text-red-600">
                                         <Flame className="w-4 h-4" />
                                     </div>
                                     <div>
-                                        <p className="text-xs font-bold text-slate-200">Self-Destruct (Burn After Reading)</p>
-                                        <p className="text-[11px] text-slate-400">File is permanently deleted immediately after first download.</p>
+                                        <p className="text-xs font-bold text-gray-800">Self-Destruct (Burn After Reading)</p>
+                                        <p className="text-[11px] text-gray-500">File is permanently deleted immediately after first download.</p>
                                     </div>
                                 </div>
                                 <input
@@ -320,7 +318,7 @@ export const UploadZone = ({ showToast, onUploadSuccess, openQRModal }) => {
                                         setBurnAfterReading(e.target.checked);
                                         if (e.target.checked) setMaxDownloads('1');
                                     }}
-                                    className="w-4 h-4 accent-rose-500 rounded cursor-pointer"
+                                    className="w-4 h-4 accent-[#F57C00] rounded cursor-pointer"
                                 />
                             </div>
                         </div>
@@ -331,13 +329,13 @@ export const UploadZone = ({ showToast, onUploadSuccess, openQRModal }) => {
                 <div className="mt-6">
                     {isUploading ? (
                         <div className="space-y-2">
-                            <div className="flex justify-between text-xs text-slate-400 font-medium">
+                            <div className="flex justify-between text-xs text-gray-500 font-medium">
                                 <span>Uploading securely...</span>
                                 <span>{progress}%</span>
                             </div>
-                            <div className="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
+                            <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
                                 <div
-                                    className="bg-gradient-to-r from-indigo-500 to-purple-500 h-2.5 rounded-full transition-all duration-300"
+                                    className="bg-[#F57C00] h-2.5 rounded-full transition-all duration-300"
                                     style={{ width: `${progress}%` }}
                                 />
                             </div>
@@ -347,7 +345,7 @@ export const UploadZone = ({ showToast, onUploadSuccess, openQRModal }) => {
                             type="button"
                             onClick={handleUpload}
                             disabled={selectedFiles.length === 0}
-                            className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold text-sm shadow-xl shadow-indigo-600/25 transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                            className="w-full py-3 px-4 rounded-xl bg-[#F57C00] hover:bg-[#bd5e00] text-white font-semibold text-sm shadow-md shadow-orange-500/20 transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                         >
                             <UploadCloud className="w-4 h-4" />
                             <span>Upload {selectedFiles.length > 0 ? `(${selectedFiles.length} files)` : 'Files'}</span>
@@ -358,27 +356,27 @@ export const UploadZone = ({ showToast, onUploadSuccess, openQRModal }) => {
 
             {/* Uploaded Files Ready Links */}
             {uploadedFiles.length > 0 && (
-                <div className="max-w-2xl mx-auto p-6 rounded-3xl bg-slate-900/90 border border-emerald-500/30 shadow-2xl backdrop-blur-xl animate-in fade-in duration-300">
-                    <div className="flex items-center gap-2.5 mb-4 text-emerald-400">
+                <div className="max-w-2xl mx-auto p-6 rounded-3xl bg-white border border-emerald-300 shadow-sm animate-in fade-in duration-300">
+                    <div className="flex items-center gap-2.5 mb-4 text-emerald-600">
                         <Check className="w-5 h-5" />
-                        <h3 className="font-bold text-sm text-white">Files Ready for Secure Sharing!</h3>
+                        <h3 className="font-bold text-sm text-gray-900">Files Ready for Secure Sharing!</h3>
                     </div>
 
                     <div className="space-y-3">
                         {uploadedFiles.map((file) => (
                             <div
                                 key={file.id}
-                                className="p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                                className="p-3.5 rounded-2xl bg-gray-50 border border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
                             >
                                 <div className="truncate">
-                                    <p className="text-xs font-semibold text-slate-100 truncate">{file.name}</p>
-                                    <div className="flex items-center gap-2 mt-1 text-[11px] text-slate-400">
+                                    <p className="text-xs font-semibold text-gray-900 truncate">{file.name}</p>
+                                    <div className="flex items-center gap-2 mt-1 text-[11px] text-gray-500">
                                         <span>{formatFileSize(file.size)}</span>
                                         {file.burnAfterReading && (
-                                            <span className="text-rose-400 font-medium">🔥 Burn after reading</span>
+                                            <span className="text-red-600 font-medium">🔥 Burn after reading</span>
                                         )}
                                         {file.hasPassword && (
-                                            <span className="text-amber-400 font-medium">🔒 Password protected</span>
+                                            <span className="text-amber-600 font-medium">🔒 Password protected</span>
                                         )}
                                     </div>
                                 </div>
@@ -386,16 +384,16 @@ export const UploadZone = ({ showToast, onUploadSuccess, openQRModal }) => {
                                 <div className="flex items-center gap-2 shrink-0">
                                     <button
                                         onClick={() => copyToClipboard(file.path, file.id)}
-                                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition-all shadow-md"
+                                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#F57C00] hover:bg-[#bd5e00] text-white text-xs font-medium transition-all shadow-sm"
                                     >
-                                        {copiedId === file.id ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                                        {copiedId === file.id ? <Check className="w-3.5 h-3.5 text-white" /> : <Copy className="w-3.5 h-3.5" />}
                                         <span>{copiedId === file.id ? 'Copied' : 'Copy Link'}</span>
                                     </button>
 
                                     <button
                                         onClick={() => openQRModal(file.path, file.name)}
                                         title="QR Code for mobile"
-                                        className="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+                                        className="p-1.5 rounded-xl bg-gray-200 hover:bg-gray-300 text-gray-700 transition-colors"
                                     >
                                         <QrCode className="w-4 h-4" />
                                     </button>
@@ -408,16 +406,16 @@ export const UploadZone = ({ showToast, onUploadSuccess, openQRModal }) => {
 
             {/* Guest Banner Prompt */}
             {!isAuthenticated && (
-                <div className="max-w-2xl mx-auto p-4 rounded-2xl bg-gradient-to-r from-indigo-950/40 via-purple-950/20 to-slate-900 border border-indigo-500/20 flex items-center justify-between gap-4">
+                <div className="max-w-2xl mx-auto p-4 rounded-2xl bg-orange-50/70 border border-orange-200 flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
-                        <Sparkles className="w-5 h-5 text-indigo-400 shrink-0" />
-                        <p className="text-xs text-slate-300">
-                            Want to <span className="text-white font-semibold">revoke links</span>, see <span className="text-white font-semibold">download statistics</span>, and manage your vault?
+                        <Sparkles className="w-5 h-5 text-[#F57C00] shrink-0" />
+                        <p className="text-xs text-gray-700">
+                            Want to <span className="text-gray-900 font-semibold">revoke links</span>, see <span className="text-gray-900 font-semibold">download statistics</span>, and manage your vault?
                         </p>
                     </div>
                     <button
                         onClick={openRegister}
-                        className="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shrink-0 transition-colors shadow-md"
+                        className="px-3 py-1.5 rounded-xl bg-[#F57C00] hover:bg-[#bd5e00] text-white text-xs font-semibold shrink-0 transition-colors shadow-sm"
                     >
                         Sign Up Free
                     </button>

@@ -42,39 +42,39 @@ export const AuthModal = ({ showToast }) => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-in fade-in duration-200">
-            <div className="relative w-full max-w-md p-8 rounded-3xl bg-slate-900/90 border border-slate-800 shadow-2xl shadow-indigo-950/40 backdrop-blur-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-200">
+            <div className="relative w-full max-w-md p-8 rounded-3xl bg-white border border-gray-200 shadow-2xl">
                 {/* Close Button */}
                 <button
                     onClick={closeAuthModal}
-                    className="absolute top-5 right-5 text-slate-400 hover:text-white p-1.5 rounded-xl hover:bg-slate-800/80 transition-colors"
+                    className="absolute top-5 right-5 text-gray-400 hover:text-gray-700 p-1.5 rounded-xl hover:bg-gray-100 transition-colors"
                 >
                     <X className="w-5 h-5" />
                 </button>
 
                 {/* Header Icon */}
-                <div className="w-12 h-12 mb-6 rounded-2xl bg-gradient-to-tr from-indigo-500/20 to-purple-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shadow-lg shadow-indigo-500/10">
+                <div className="w-12 h-12 mb-6 rounded-2xl bg-orange-50 border border-orange-200 flex items-center justify-center text-[#F57C00] shadow-sm">
                     <ShieldCheck className="w-6 h-6" />
                 </div>
 
-                <h2 className="text-2xl font-extrabold text-white tracking-tight">
+                <h2 className="text-2xl font-bold text-gray-900 tracking-tight">
                     {authModalMode === 'login' ? 'Welcome Back' : 'Create an Account'}
                 </h2>
-                <p className="text-sm text-slate-400 mt-1 mb-6">
+                <p className="text-sm text-gray-500 mt-1 mb-6">
                     {authModalMode === 'login' 
                         ? 'Sign in to access your file vault and analytics.' 
                         : 'Unlock persistent vault storage, link revocation & stats.'}
                 </p>
 
                 {/* Mode Switcher Tabs */}
-                <div className="flex p-1 bg-slate-800/60 rounded-xl border border-slate-700/50 mb-6">
+                <div className="flex p-1 bg-gray-100 rounded-xl border border-gray-200 mb-6">
                     <button
                         type="button"
                         onClick={() => { setAuthModalMode('login'); setError(''); }}
                         className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all ${
                             authModalMode === 'login'
-                                ? 'bg-indigo-600 text-white shadow-md'
-                                : 'text-slate-400 hover:text-slate-200'
+                                ? 'bg-[#F57C00] text-white shadow-sm'
+                                : 'text-gray-600 hover:text-gray-900'
                         }`}
                     >
                         Sign In
@@ -84,8 +84,8 @@ export const AuthModal = ({ showToast }) => {
                         onClick={() => { setAuthModalMode('register'); setError(''); }}
                         className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-all ${
                             authModalMode === 'register'
-                                ? 'bg-indigo-600 text-white shadow-md'
-                                : 'text-slate-400 hover:text-slate-200'
+                                ? 'bg-[#F57C00] text-white shadow-sm'
+                                : 'text-gray-600 hover:text-gray-900'
                         }`}
                     >
                         Create Account
@@ -93,7 +93,7 @@ export const AuthModal = ({ showToast }) => {
                 </div>
 
                 {error && (
-                    <div className="p-3.5 mb-5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-medium leading-relaxed">
+                    <div className="p-3.5 mb-5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-medium leading-relaxed">
                         {error}
                     </div>
                 )}
@@ -101,40 +101,40 @@ export const AuthModal = ({ showToast }) => {
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {authModalMode === 'register' && (
                         <div>
-                            <label className="block text-xs font-semibold text-slate-300 mb-1.5 uppercase tracking-wider">Full Name</label>
+                            <label className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wider">Full Name</label>
                             <div className="relative">
-                                <User className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                                <User className="w-4 h-4 text-gray-400 absolute left-3.5 top-3.5" />
                                 <input
                                     type="text"
                                     required
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     placeholder="Jane Doe"
-                                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+                                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-gray-300 text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-[#F57C00] focus:border-[#F57C00] transition-colors"
                                 />
                             </div>
                         </div>
                     )}
 
                     <div>
-                        <label className="block text-xs font-semibold text-slate-300 mb-1.5 uppercase tracking-wider">Email Address</label>
+                        <label className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wider">Email Address</label>
                         <div className="relative">
-                            <Mail className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                            <Mail className="w-4 h-4 text-gray-400 absolute left-3.5 top-3.5" />
                             <input
                                 type="email"
                                 required
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="name@domain.com"
-                                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+                                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-gray-300 text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-[#F57C00] focus:border-[#F57C00] transition-colors"
                             />
                         </div>
                     </div>
 
                     <div>
-                        <label className="block text-xs font-semibold text-slate-300 mb-1.5 uppercase tracking-wider">Password</label>
+                        <label className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wider">Password</label>
                         <div className="relative">
-                            <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                            <Lock className="w-4 h-4 text-gray-400 absolute left-3.5 top-3.5" />
                             <input
                                 type="password"
                                 required
@@ -142,7 +142,7 @@ export const AuthModal = ({ showToast }) => {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="••••••••"
-                                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+                                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-gray-300 text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-[#F57C00] focus:border-[#F57C00] transition-colors"
                             />
                         </div>
                     </div>
@@ -150,7 +150,7 @@ export const AuthModal = ({ showToast }) => {
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full mt-2 py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                        className="w-full mt-2 py-3 px-4 rounded-xl bg-[#F57C00] hover:bg-[#bd5e00] text-white font-semibold text-sm shadow-md shadow-orange-500/20 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                     >
                         {isLoading ? (
                             <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -164,8 +164,8 @@ export const AuthModal = ({ showToast }) => {
                 </form>
 
                 {/* Free perks hint */}
-                <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center gap-2 text-xs text-slate-400">
-                    <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
+                <div className="mt-6 pt-4 border-t border-gray-200 flex items-center gap-2 text-xs text-gray-500">
+                    <Sparkles className="w-4 h-4 text-[#F57C00] shrink-0" />
                     <span>Free account includes link revocation, download limits & analytics</span>
                 </div>
             </div>

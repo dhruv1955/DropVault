@@ -4,29 +4,24 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        vault: {
-          50: '#f0f4ff',
-          100: '#e0e9fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
-          950: '#082f49',
-        },
-        dark: {
-          bg: '#090d16',
-          card: '#111726',
-          surface: '#182235',
-          border: '#233047',
-          hover: '#1e2c46'
+        brand: {
+          DEFAULT: '#F57C00',
+          hover: '#bd5e00',
+          dark: '#e06f00',
+          subtle: '#FFF7ED',
+          50: '#FFF7ED',
+          100: '#FFEDD5',
+          200: '#FED7AA',
+          300: '#FDBA74',
+          400: '#FB923C',
+          500: '#F57C00',
+          600: '#EA580C',
+          700: '#C2410C',
+          800: '#9A3412',
+          900: '#7C2D12',
         }
       },
       fontFamily: {

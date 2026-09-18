@@ -26,7 +26,7 @@ function AppContent() {
     };
 
     return (
-        <div className="min-h-screen bg-[#070b14] text-slate-100 flex flex-col selection:bg-indigo-500/30 selection:text-indigo-200">
+        <div className="min-h-screen bg-[#F9FAFB] text-gray-900 flex flex-col selection:bg-orange-500/20 selection:text-orange-900">
             {/* Global Navbar */}
             <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
 
@@ -47,10 +47,10 @@ function AppContent() {
             </main>
 
             {/* Footer */}
-            <footer className="border-t border-slate-800/80 py-6 text-center text-xs text-slate-500">
+            <footer className="border-t border-gray-200 bg-white py-6 text-center text-xs text-gray-500">
                 <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-                    <p>© {new Date().getFullYear()} DropVault. Secure Zero-Exposure File Sharing.</p>
-                    <p className="flex items-center gap-2">
+                    <p>© {new Date().getFullYear()} <span className="font-semibold text-gray-700">DropVault</span>. Secure Zero-Exposure File Sharing.</p>
+                    <p className="flex items-center gap-2 text-gray-400">
                         <span>Protected Storage</span>
                         <span>•</span>
                         <span>SHA-256 Hashing</span>
